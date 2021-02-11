@@ -44,7 +44,7 @@ async function getNicehash() {
 function processNodes(nodes) {
     for (let id in nodes) {
         var node = nodes[id]
-        if (typeof sockend === 'undefined' && node.advertisement.type === 'service' && node.advertisement.name === 'hardware monitor' && node.isMaster) {
+        if (typeof sockend === 'undefined' && node.advertisement.type === 'service' && node.advertisement.name === 'hardware monitor' && (node.isMaster || node.isMasterEligible)) {
             console.log('Found master node', node)
             sockend = new cote.Sockend(io, {
                 name: 'hardware monitor',
